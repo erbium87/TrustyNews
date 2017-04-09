@@ -1,0 +1,25 @@
+{
+  "name": "trustynews",
+  "version": "1.0.0",
+  "description": "Comment on the latest trusted news",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/erbium87/TrustyNews.git"
+  },
+  "keywords": [
+    "MongoDB",
+    "Cheerio",
+    "handlebars",
+    "express"
+  ],
+  "author": "merb",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/erbium87/TrustyNews/issues"
+  },
+  "homepage": "https://github.com/erbium87/TrustyNews#readme"
+}
