@@ -24,7 +24,7 @@ app.use(express.static("public"));
 app.engine("handlebars", exphbs({ defaultLayout: "main"}));
 app.set("view engine", "handlebars");
 
-mongoose.connect("mongodb://localhost/TrustyNews");
+mongoose.connect("mongodb://heroku_wtjt5bk4:im5b6upn644mujsf5ki5omlml1@ds155490.mlab.com:55490/heroku_wtjt5bk4");
 var db = mongoose.connection;
 
 db.on("error", function(error) {
