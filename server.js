@@ -6,6 +6,7 @@ var request = require("request");
 var cheerio = require("cheerio");
 var exphbs = require("express-handlebars");
 var app = express();
+var PORT = process.env.PORT || 3000;
 
 
 var News = require("./models/News.js");
@@ -156,6 +157,6 @@ app.post("/news/:id", function(req, res) {
 
 
 
-app.listen(3000, function() {
+app.listen(PORT, function() {
   console.log("App running on port 3000!");
 });
