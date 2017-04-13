@@ -14,24 +14,22 @@
 	
  	<nav class="navbar navbar-light bg-faded">
   	<form class="form-inline">
-    	<button class="btn btn-outline-success" id="scraper" type="button" href="/newscraper">Scrape</button>
-    	<button class="btn btn-sm align-middle btn-outline-secondary" id="faves" type="button" href="/favorites">Saved Stories</button>
+    	<button class="btn btn-outline-success" id="scraper" type="button" href="/news">Home</button>
   	</form>
 	</nav>
-		
 		{{#each News}}
 			<div class="card col-md-4">
-				<img class="card-img-top pic" src="{{this.image}}" alt="Card image cap" style="height: 180px; width: 380px; display: block;">
+				<img class="card-img-top pic" src="{{this.image}}" alt="Card image cap">
 				<div class="card-block">
 				  <p class="card-text" id="news">{{this.title}}</p>
 				  <a id="article" href="http://www.theonion.com{{this.link}}">{{this.link}}</a>
 				  <br></br>
-				<button type="button" class="btn btn-warning btn-sm" id="favorite" data-id="{{this._id}}">Favorite</button>
+				<button type="button" class="btn btn-warning btn-sm" id="unfavorite" data-id="{{this._id}}">Unfavorite</button>
 				</div>
 			</div>
 			<br></br>
 		{{/each}}
-
+	{{!-- </ul> --}}
 	</div>
 
 

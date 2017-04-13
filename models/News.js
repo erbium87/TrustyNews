@@ -11,9 +11,13 @@ var NewsSchema = new Schema ({
 		type: String,
 		required: true
 	},
+	image: {
+		type: String,
+		require: true
+	},
 	comment: {
 		type: Schema.Types.ObjectId,
-		ref: "Comments"
+		ref: "Comment"
 	}
 });
 

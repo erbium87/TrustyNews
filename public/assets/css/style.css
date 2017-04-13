@@ -1,0 +1,19 @@
+.jumbotron {
+	position: relative;
+	background-image: url(../images/holy-bible.jpg); 
+	width:100%;
+	height: 100%;
+	background-size: 100% 100%;
+	color: white;
+	text-shadow:
+		-1px -1px 0 #000,  
+		1px -1px 0 #000,
+		-1px 1px 0 #000,
+		1px 1px 0 #000;
+}
+
+
+body {
+	background: linear-gradient(to right, #77a1d3, #79cbca, #e684ae)
+}
+
