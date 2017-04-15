@@ -14,7 +14,7 @@
 	
  	<nav class="navbar navbar-light bg-faded">
   	<form class="form-inline">
-    	<button class="btn btn-outline-success" id="scraper" type="button" href="/news">Home</button>
+    	<button class="btn btn-outline-success" id="scraper" type="button" href="/">Home</button>
   	</form>
 	</nav>
 		{{#each News}}
@@ -24,7 +24,8 @@
 				  <p class="card-text" id="news">{{this.title}}</p>
 				  <a id="article" href="http://www.theonion.com{{this.link}}">{{this.link}}</a>
 				  <br></br>
-				<button type="button" class="btn btn-warning btn-sm" id="unfavorite" data-id="{{this._id}}">Unfavorite</button>
+				 <button type="button" class="btn btn-warning btn-sm comment">Comment</button>
+				<button type="button" class="btn btn-warning btn-sm unfavorite" data-id="{{this._id}}">Unfavorite</button>
 				</div>
 			</div>
 			<br></br>

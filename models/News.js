@@ -15,6 +15,10 @@ var NewsSchema = new Schema ({
 		type: String,
 		require: true
 	},
+	saved: {
+		type: Boolean,
+		default: false
+	},
 	comment: {
 		type: Schema.Types.ObjectId,
 		ref: "Comment"

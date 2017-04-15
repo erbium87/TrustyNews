@@ -24,33 +24,63 @@
 // 		}
 // 	});
 // });
-
+//on click for scraping the onion
 $("#scraper").on("click", function(ev) {
 	// ev.preventDefault();
 
-	$.get("/news", function(data) {});
+
+	$.get("/newscraper").then(function(data) {
+		// console.log(data);
+	});
+
+});
+//on click to view favorites saved
+$("#faves").on("click", function(){
+	$.get("/").then(function(data) {
+
+	});
 });
 
-$("#faves").on("click", function(){
-	$.get("/")
-})
 
 
 
-$(document).on("click", "#favorite", function () {
+//on click to make favorite
+$(document).on("click", ".favorite", function (e) {
+	e.preventDefault();
 	var thisId = $(this).attr("data-id");
 
 	$.ajax({
 		method: "POST",
-		url: "/news/" + thisId,
-		data: {
-			title: $("#news").val(),
-			body: $("#bodyinput").val()
-		}
+		url: "/favorites/" + thisId
+		// data: {
+		// 	title: $("#news").val(),
+		// 	body: $("#bodyinput").val()
+		// }
 	})
 	.done(function(data) {
 		console.log(data);
 		// $("#comment").empty();
+	});
+	// $("#titleinput").val("");
+	// $("#bodyinput").val("");
+});
+
+//on click for making comment
+$(document).on("click", ".comment", function (e) {
+	e.preventDefault();
+	var thisId = $(this).attr("data-id");
+
+	$.ajax({
+		method: "POST",
+		url: "/favorites/" + thisId
+		// data: {
+		// 	title: $("#news").val(),
+		// 	body: $("#bodyinput").val()
+		// }
+	})
+	.done(function(data) {
+		console.log(data);
+		$("#comment").empty();
 	});
 	// $("#titleinput").val("");
 	// $("#bodyinput").val("");
