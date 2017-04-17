@@ -1,38 +1,14 @@
-<!DOCTYPE html>
-<html lang="en-us">
-<head>
-	<meta charset="UTF-8">
-	<title>News</title>
-</head>
-<body>
-	<div id="scrapper">
-		<div class="jumbotron">
-			<div class="container">
-				<h1 class="text-center text-uppercase">Trusty News</h1>
-			</div>
+
+{{#each News}}
+	<div class="card col-md-6 comment" style="padding-bottom:15px; padding-top= 15px;">
+		<img class="card-img-top pic" src="{{this.image}}" style="height: 180px; width: 380px; display: block;">
+		<div class="card-block">
+		  <h4 class="card-title" id="news">{{this.title}}</h4>
+		  <a id="article" href="http://www.theonion.com{{this.link}}">{{this.link}}</a>
+		  <br></br>
+		 <button type="button" class="btn btn-default btn-sm commentButton" data-id="{{this._id}}">Comment</button>
+		<a href="/favorites" type="button" class="btn btn-default btn-sm unfavorite" data-status="{{this.saved}}" data-id="{{this._id}}">Unfavorite</a>
+		<div class="addComment"></div>
 		</div>
-	
- 	<nav class="navbar navbar-light bg-faded">
-  	<form class="form-inline">
-    	<button class="btn btn-outline-success" id="scraper" type="button" href="/">Home</button>
-  	</form>
-	</nav>
-		{{#each News}}
-			<div class="card col-md-4">
-				<img class="card-img-top pic" src="{{this.image}}" alt="Card image cap">
-				<div class="card-block">
-				  <p class="card-text" id="news">{{this.title}}</p>
-				  <a id="article" href="http://www.theonion.com{{this.link}}">{{this.link}}</a>
-				  <br></br>
-				 <button type="button" class="btn btn-warning btn-sm comment">Comment</button>
-				<button type="button" class="btn btn-warning btn-sm unfavorite" data-id="{{this._id}}">Unfavorite</button>
-				</div>
-			</div>
-			<br></br>
-		{{/each}}
-	{{!-- </ul> --}}
 	</div>
-
-
-</body>
-</html>
+{{/each}}

@@ -10,10 +10,17 @@
 		1px -1px 0 #000,
 		-1px 1px 0 #000,
 		1px 1px 0 #000;
+	margin-bottom: 0px;
 }
-
 
 body {
 	background: linear-gradient(to right, #77a1d3, #79cbca, #e684ae)
 }
+
+textarea {
+	margin-top: 5px;
+}
+
+
+
 

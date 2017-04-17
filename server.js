@@ -36,6 +36,18 @@ db.once("open", function() {
 });
 
 
+app.get("/", function(req, res) {
+	News.find({}).sort({$natural:-1}).limit(10).exec(function(error, doc) {
+		if (error) {
+			console.log(error);
+		}
+		else {
+			console.log(doc);
+			res.render("index", {News: doc});
+		}
+	});
+});
+
 app.get("/newscraper", function(req, res) {
 	request("http://www.theonion.com/", function (error, response, html) {
 		var $ = cheerio.load(html);
@@ -45,8 +57,6 @@ app.get("/newscraper", function(req, res) {
 			result.title = $(element).find("h2.headline").find("a").attr("title");
 			result.link = $(element).find("h2.headline").find("a").attr("href");
 			var entry = new News(result);
-
-			console.log(entry);
 
 			entry.save(function(err, doc) {
 				if (err) {
@@ -62,47 +72,8 @@ app.get("/newscraper", function(req, res) {
 		res.redirect("/");
 });
 
-
-
-app.get("/", function(req, res) {
-	News.find({}).sort({$natural:-1}).limit(10).exec(function(error, doc) {
-		if (error) {
-			console.log(error);
-		}
-		else {
-			console.log(doc);
-			res.render("index", {News: doc});
-		}
-	});
-});
-
-// app.get("/news", function(req, res) {
-// 	News.find({}).limit(10).exec(function(error, doc) {
-// 		if (error) {
-// 			console.log(error);
-// 		}
-// 		else {
-// 			res.render("index", {News: doc});
-// 		}
-// 	});
-// });
-
-
-// app.get("/news/:id", function(req, res) {
-// 	News.findOne({ "_id": req.params.id })
-// 	.populate("comment")
-// 	.exec(function(error, doc) {
-// 		if(error) {
-// 			console.log(error);
-// 		}
-// 		else {
-// 			res.json(doc);
-// 		}
-// 	});
-// });
-
+//click on favorite button, changes saved to true in db
 app.post("/favorites/:id", function(req, res) {
-	// News.findOneAndUpdate({ "_id": req.params.id}, {"saved": true});
 	News.where({"_id": req.params.id}).update({ $set: {saved: true}})
 		.exec(function (error, doc) {
 		
@@ -115,9 +86,24 @@ app.post("/favorites/:id", function(req, res) {
 	});
 });
 
+//click on unfavorite button, changes saved to false in db
+app.post("/unfavorite/:id", function(req, res) {
+	News.where({"_id": req.params.id}).update({ $set: {saved: false}})
+		.exec(function (error, doc) {
+		
+		if (error) {
+			console.log(error);
+		}
+		else {
+			res.json(doc);
+		}
+	});
+});
 
+
+//click on saved stories to go to saved articles
 app.get("/favorites", function(req, res) {
-	News.where({saved: true}).exec(function(error, doc) {
+	News.find({saved: true}).exec(function(error, doc) {
 		if(error) {
 			console.log(error);
 		}
@@ -127,7 +113,20 @@ app.get("/favorites", function(req, res) {
 	});
 });
 
-app.post("/news/:id", function(req, res) {
+app.get("/comment/:id", function(req, res) {
+	News.findOne({ "_id": req.params.id })
+		.populate("comment")
+		.exec(function(error, doc) {
+			if (error) {
+				console.log(error);
+			}
+			else {
+				res.json(doc);
+			}
+		});
+});
+
+app.post("/comment/:id", function(req, res) {
 	var newComment = new Comment(req.body);
 	newComment.save(function(error, doc) {
 		if (error) {
